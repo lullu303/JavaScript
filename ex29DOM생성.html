@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex29DOM생성.html</title>
+</head>
+<body>
+    <h1>DOM - 새로운 Element 를 생성해서 추가해보자.</h1>
+    <button id='bt1'>새로운 요소 생성1</button>
+    <button id='bt2'>새로운 요소 생성2</button>
+    <hr color='red'>
+    <div id="result">
+
+    </div>
+
+    <script>
+        let bt1=document.getElementById('bt1');
+        let bt2=document.getElementById('bt2');
+        let result=document.getElementById('result');
+        //[1] bt1에 클릭 이벤트 처리하되 addEventListener()를 이용해서 처리하기
+        //   <img> 이미지를 동적으로 추가하기
+        bt1.addEventListener('click',function(){
+            let str=`<img src="images/m2.png">`;
+            result.innerHTML=str;
+        })
+
+        //[2] bt2클릭시 이미지 추가하기
+        /* createElement('엘리먼트명'): 새로운 엘리먼트를 생성
+           creatTextNode('텍스트'): 새로운 텍스트를 생성
+           부모요소.appendChild(엘리먼트객체) : 부모요소 뒤에 덧붙이기
+           부모요소.insertBefore(엘리먼트 객체, target) : target 앞에 붙이기
+           속성 추가시: 요소.setAttribute('속성명','속성값')
+        */
+       bt2.onclick=function(){
+            let objH2=document.createElement('h2');
+            let txt=document.createTextNode('Hello JavaScript');
+            objH2.appendChild(txt);
+            result.appendChild(objH2);
+            //h2에 sytle속성 추가해서 글자색 알아서 주세요
+            objH2.setAttribute('style', 'color:maroon');
+
+            //img 엘리먼트 생성한 뒤에 속성값 지정하고 
+            //result인 곳에 붙이기
+            let img=document.createElement('img');
+            img.setAttribute('src','images/m2.png');
+            img.setAttribute('width','150px');
+            img.setAttribute('height', '220px');
+            //result.appendChild(img);
+            result.insertBefore(img,objH2);
+       }
+       
+    </script>
+</body>
+</html>
+<!-- ex29DOM생성.html -->

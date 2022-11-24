@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex24실습.html</title>
+    <style>
+        body{
+            background-color: #000;
+            color: white;
+        }
+        div#movies{
+            width:90%;
+            margin: 50px auto;
+            text-align: center;
+            /* border: thick yellow solid;*/
+        }
+        div#btns{
+            width:50%;
+            margin: auto;
+           /* border: 1px solid  white; */
+            text-align: center;
+            padding:5px;
+        }
+        div#btns button{
+            width: 120px;
+            height: 30px;
+        }
+        div#movies image{
+            width: 150px;
+            height: 212.66;
+            border: 1px solid wheat;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="btns">
+            <button id="btn1">현재 상영작</button>
+            <button id="btnPlay">Play</button>
+            <button id="btnStop">Stop</button>
+        </div>
+        <div id="movies">
+            
+        </div>
+    </div>
+    <script>
+        //[1] 현재 상영중인 영화 이미지들 5개를 배열에 저장하세요.
+        let movies=[`m1.png`,`m2.png`,`m3.png`, `m4.png`, `m5.png`];
+        //[2] 현재 상영작 버튼을 누르면 배열에 저장한 영화 이미지를
+        //id가 movies인 곳에 나타나도록 처리하세요
+        //innerHTML속성 이용해서 img태그를 id가 movies인 곳에 삽입하기
+        let btn1=document.getElementById(`btn1`);
+        let divMovies=document.querySelector(`#movies`);
+        let btnPlay=document.querySelector(`#btnPlay`);
+        let btnStop=document.querySelector(`#btnStop`);
+        let wid=null;
+        let x=20; //x좌표
+        let i=1; //x좌표값의 증가치
+
+        btn1.onclick=function(){
+            let str=``;
+            movies.forEach(function(movie){
+                console.log(movie);
+                str+=`<img src="images/${movie}">`;
+            })
+
+           // divMovies.innerText=str;
+           divMovies.innerHTML=str;
+        }
+        //[3]▶️ 버튼을 누르면 영화 이미지들이 오른쪽으로 이동하도록 하세요
+        //    오른쪽 끝으로 다 이동하면 다시 왼쪽으로 이동시키고,
+        //    왼쪽 끝에 이동하면 다시 오른쪽으로 이동시키세요
+
+        btnPlay.onclick=function(){
+            //divMovies의 x좌표 변경해서 이동시키기
+            divMovies.style.position='absolute';
+            if(wid==null){
+                wid=setInterval(function(){
+                    //alert(document.body.clientWidth);
+                    if(x>=(document.body.clientWidth-750)){
+                        i=-1;
+                    }
+                    if(x<=0){
+                        i=1;
+                    }
+
+                    divMovies.style.left=x+"px";
+                    x+=i;
+
+                },20);
+            }
+        }//---------------------------
+
+        btnStop.onclick=function(){
+            if(wid!=null){
+                clearInterval(wid);
+                wid=null;
+            }
+        }//---------------------------
+
+    </script>
+</body>
+</html>
+
+<!-- ex24실습.html -->

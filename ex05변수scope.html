@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex5변수scope.html</title>
+</head>
+<body>
+    <h1>전역변수, 지역변수, 매개변수</h1>
+    <script type="text/javascript">
+        var global="전역변수";
+
+        function hello() {
+            var local="지역변수";
+            aaa=500; //var를 생략하고 변수를 선언, 초기화 =>전역변수처럼 사용.
+            alert('global='+global);
+            alert('global='+global);
+        }
+        function hi(name) {
+            //name: 매개변수 var 를 생략하고 변수명만 기술함 (지역변수)
+            alert('hi() global='+global);
+            // alert('hi() local='+local); [x]
+            alert('hihihi aaa='+aaa);
+            alert('Hi '+name);
+        }
+
+        hello(); //함수 호출
+        hi('King');
+
+
+
+    </script>
+</body>
+</html>
