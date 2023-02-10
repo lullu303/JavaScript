@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매개변수가 있는 생성자.</title>
+</head>
+<body>
+    <script>
+        function Car ( carBrand, carName){
+            this.carBrand = carBrand;
+            this.carName = carName;
+        }
+        var car = new Car ( "KIA", "K7" );
+        console.log( car.carBrand ); //→ KIA
+        console.log( car.carName ); //→ K7
+        console.dir( car )
+
+        
+    </script>
+    
+</body>
+</html>
