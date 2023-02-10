@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex09실습.html</title>
+</head>
+<body>
+    <h1>적정 체중을 구하는 프로그램</h1>
+    <div>
+        [실습] 이름, 키, 몸무게를 입력받아서 적정 체중을 구한 뒤 비교하여
+               적정 체중을 10% 초과하면  '과체중(red)', 적정 체중 10% 미달이면
+               '체중 미달(blue)', 그 외에는 '적정체중(green)'을 출력하세요
+               <br><br>
+        <h3 style="color:brown">
+        적정 체중 = (신장 -100) *0.9 를 적정체중으로 봅니다.
+        </h3>
+        <hr>
+        <script>
+            var name=prompt('이름을 입력하세요', "홍길동");
+            var height=prompt('키를 입력하세요', 177);
+            var weight=prompt('몸무게를 입력하세요', 66);
+
+            // document.write(name, height, weight, "<br>");
+            // document.write("name: "+name, "<br>");
+            document.write(`name: ${name}, height: ${height}, weight: ${weight}, "<br>"`);
+            calc(name, height, weight)
+
+            function calc(name, h, w) {
+                var bmi=(h-100)*0.9;
+                document.write(`<h2>적정 체중: ${bmi} </h2>`);
+                var str="";
+                var cr="black";
+                if(bmi*1.1<w){
+                    str="당신은 과체중 입니다.";
+                    cr="red";
+                }
+                else if(bmi*0.9<w){
+                    str="당신은 체중미달입니다.";
+                    cr="blue";
+                }
+                else{
+                    str="적정 체중입니다";
+                    cr="green";
+                }
+                document.write(`<h1 style="color:${cr}">${str}</h1>`)
+            }
+
+        </script>
+
+
+
+</body>
+</html>
+<!-- ex09실습.html -->

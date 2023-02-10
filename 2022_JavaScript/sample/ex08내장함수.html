@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex08내장함수.html</title>
+</head>
+<body>
+    <h1>내장함수</h1>
+    <h2>parseInt(), parseFloat(), Number(), Boolean(), isNaN(), eval()</h2>
+    <script>
+        var a=parseFloat("3.14");
+        var b=Number("2.12");
+        document.write(a+b, "<br>");
+
+        var str="50+11*2-3";
+        pr(str);
+        // [1] eval(string) : 문자열로 된 수식을 파싱해서 실제 연산을 수행한 뒤, 그 결과값을 반환.
+        var result=eval(str);
+        pr(result);
+
+        // [2] isNaN(값):매개변수의 값이 숫자가 아니면 true를 반환, 숫자면 false를 반환한다.
+        //      pr(isNaN("55")) //false , is not a number(숫자형태로 되어 있음)
+        pr(isNaN("55a")) //true
+        pr(isNaN("5-2")) //true
+        pr(isNaN(eval("5-2"))) //false 
+
+        document.write("<hr color='red'>");
+
+        // [3] Boolean(값): 1=>true, 0=>false, 값이 있으면 true, 없으면 false
+        pr(Boolean(1)); //true
+        pr(Boolean(0)); //false
+        pr(Boolean(100)); //true , 값을 가지고 있음.
+        pr(Boolean("")); //false
+        pr(Boolean(" ")); //true
+        pr(Boolean("0")); //true , 0으로 된 문자열.
+        pr(Boolean(undefined)); //false , 값이 정의되지 않음.
+
+        document.write("<hr color='blue'>");
+        pr(Boolean(null)); // false , 값이 없음.
+        pr(Boolean(true)); // true
+        pr(Boolean(false)); // false
+
+
+
+        function pr(str) {
+            document.write("<h2>"+str+"</h2>");
+        }
+
+
+
+    </script>
+
+</body>
+</html>
+<!-- ex08내장함수.html -->

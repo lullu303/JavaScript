@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex4데이터타입.html</title>
+</head>
+<body>
+    <h1>자바스크립트 자료유형</h1>
+    <h2>기본자료형: number, boolean, string, undefined</h2>
+    <h2>참조형: object, function</h2>
+    <script>
+        //변수선언 => var, let, const(상수선언 시, java=final)
+        var a;
+        a=10; //초기화 a: 정수 number
+        window.document.write("a="+a, "<br>");
+        document.write("a의 자료형="+typeof a, "<br>");
+        a="Hi" //문자열 a: 문자열 string
+        document.write("a의 자료형2="+typeof(a), "<br>");
+        a='안녕';
+
+        let intNum=100; //number
+        let doubleNum=5.123; //number
+
+        var bool=true; //boolean
+        var obj1=null; //null (아무것도 아닌 값)
+        var obj2; //undefined
+        var str='이것은 문자열'; //string
+        // typeof 연산자로 자료형 확인하기
+        document.write(intNum, typeof intNum, "<br>");
+        document.write(doubleNum, typeof doubleNum, "<br>");
+        document.write(bool, typeof bool, "<br>");
+        document.write(obj1, typeof obj1, "<br>"); //object
+        document.write(obj2, typeof obj2, "<br>");
+        document.write(str, typeof str, "<br>");
+
+        document.write('<hr color="red"');
+        //참조유형
+        //객체(속성+행동양식)
+        var car=new Object();
+        car.color='black'; //객체명.속성명 = 값
+        car.capacity=2000;
+        car.run=function() { //익명함수
+            document.write("<h2>" + this.color+"색상의 자동차가 달려요");
+        }
+        // alert(car.capacity)
+        document.write(car, typeof car)
+        //함수 호출
+        car.run();
+
+
+
+    </script>
+</body>
+</html>

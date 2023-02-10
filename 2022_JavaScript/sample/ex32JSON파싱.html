@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex32JSON파싱.html</title>
+</head>
+<body>
+    <h1>JSON.stringify(), JSON.parse()</h1>
+    <h2>stringify(): JSON객체를 문자열로 변환하는 함수</h2>
+    <h2>parse(): 문자열을 JSON객체로 변환하는 함수</h2>
+    <div id="result"></div>
+    <hr>
+    <button>JSON객체생성하기</button>
+    <button>문자열을 json객체로 만들기</button>
+    <button>Ajax요청보내 json객체 받아오기</button>
+
+    <script>
+        let btAll=document.querySelectorAll('button');
+        let result=document.querySelector('#result');
+        btAll[0].onclick=function(){
+            let movie={
+                "title" : "한산",
+                "actor" : "박해일",
+                "poster": "m2.png"
+            }
+            console.log('movie의 typeof: ', typeof movie)
+            result.innerHTML=`<h1>제목: ${movie.title}, 배우: ${movie.actor}</h1>`;
+
+        }//---------------------------------------
+
+        btAll[1].onclick=function(){
+            let str='{"title":"헌트","actor":"이정재", "poster":"m1.png"}';
+            //alert(typeof str);//string
+            //문자열을 json객체로 변환하는 함수: JSON.parse(문자열)
+
+            let jsonObj=JSON.parse(str);
+            console.log('jsonObj typeof', typeof jsonObj);
+            result.innerHTML=`<h2>${jsonObj.title}, ${jsonObj['poster']}</h2>`
+        }
+        //Ajax요청을 보낼 수 있는 객체
+        let xhr=new XMLHttpRequest();
+
+        btAll[2].onclick=function(){
+            xhr.open('GET','ex32Data.json')//서버에 요청을 준비하는 함수
+
+            xhr.onreadystatechange=function(){
+                //서버에서 응답이 올 때 상태변화에 따라 지정된 콜백함수를 호출한다.
+                //alert(xhr.readyState+"/"+xhr.status)
+                //4 값일 때 서버에서의 응답이 완료되었음을 의미
+                //200 : 성공적인 응답이 올 경우 200값을 반환한다.
+                if(xhr.readyState==4&& xhr.status==200){
+                    //응답데이터 받기
+                    let txt=xhr.responseText;//string유형
+                    alert(typeof txt);
+                    //txt를 JSON객체로 변환해서
+                    //id가 result인 곳에 제목, 배우 문자열로 출력하고
+                    //      poster는 이미지로 출력하세요
+                    let obj=JSON.parse(txt);
+                    let str=`
+                        <div>
+                            <img src="images/${obj.poster}">
+                            <h4>${obj.title}</h4>
+                            <h5>주연배우:${obj.actor}</h5>
+                        </div>
+                    
+                    `
+
+                    result.innerHTML=str;
+                }
+            }
+
+            xhr.send(null);//요청을 서버에 보내는 함수
+            //get방식 요청일 경우는 send()에 null을 넘긴다.
+            //post방식일 떄는 요청파라미터 데이터를 send()함수에 전달한다.
+        }
+    </script>
+</body>
+</html>
+<!-- ex32JSON파싱.html -->

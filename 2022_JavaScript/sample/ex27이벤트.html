@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex27이벤트.html</title>
+    <style>
+        div#result{
+            width: 500px;
+            height: 500px;
+            border: 1px solid silver;
+            margin: 1em;
+        }
+        input{
+            width: 400px;
+            padding: 3px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            let input1=document.querySelectorAll('input');
+            let obj=document.getElementById('result');
+            //alert(input1[0])
+            //let val=input1[0].value
+            input1[0].onkeydown=function(evt){
+                //console.log(evt);
+                //엔터값을 치면 input1[0]의 입력값을 얻어서
+                //id가 result인 div요소 안에 메시지를 출력하세요
+                if(evt.keyCode==13){
+                    let str=this.value;
+                    obj.innerHTML="<h4>"+str+"</h4>";
+                    this.value='';//비워주기
+                    this.focus();//입력포커스 주기
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+            <label>메시지:</label>
+            <input name="msg">
+    </div>
+    <div id="result">
+
+    </div>
+</body>
+</html>
+<!-- ex27이벤트.html -->

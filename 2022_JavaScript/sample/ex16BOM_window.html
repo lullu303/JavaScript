@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex16BOM_window.html</title>
+    <style>
+        #circle{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: olive;
+            position: absolute;
+        }
+    </style>
+    <script>
+        let wid=null;
+        let obj=null;
+        //window.onload 속성
+        //window 객체가 로드된 후에 익명함수를 실행하란 의미.
+        window.onload=function(){
+        obj= document.getElementById('circle');
+        //alert(obj);//null
+        }//onload-----------
+
+        function show() {
+            if(wid==null) {
+                window.setInterval(function(){
+                    alert('꽝!!');
+                },3000)
+            }//if----
+        }//------------------
+
+        function stop(){
+            if(wid!=null) 
+                window.clearInterval(wid);
+        }//------------------
+        let x=50;//전역변수
+        function move(){
+            
+            if(wid==null){
+                wid=window.setInterval(function(){
+                    if(x>700){
+                        x=50;
+                    }
+                    x+=10;
+                    obj.style.position='absolute';
+                    obj.style.left=x+'px';
+                },20)
+            }
+        }//---------------------------
+
+        function moveStop(){
+            if(wid!=null){
+                clearInterval(wid);//중지
+                wid=null;
+            }//if---------------------
+        }//----------------------------
+
+    </script>
+</head>
+<body>
+    <h1>window객체의 setInterval()/clearInterval() 활용</h1>
+    <!-- setInterval(함수명, 밀리초) : 밀리초 단위로 함술ㄹ 주기적으로 계속 수행한다. -->
+    <!-- [실습] Move버튼을 누르면 circle의 x좌표를 이동시켜서 공이 굴러가게 하세요
+                MoveStop버튼 누르면 공굴리기, 중지시키기.
+    -->
+    <button onclick="show()">Click Me</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="move()">Move</button>
+    <button onclick="moveStop()">MoveStop</button>
+    <button onclick="window.alert('반갑습니다')">alert</button>
+    <button onclick="let str=prompt('메시지 입력'); alert(str)">prompt</button>
+    <button onclick="ask()">confirm</button>
+    <!-- 
+        window 함수 : 다이얼로그창을 띄우는 함수
+        [1] alert() : 알람창
+        [2] prompt() : 입력창
+        [3] confirm() : 확인창
+
+     -->
+    <hr>
+    <div id="circle"></div>
+
+    <script>
+        function ask(){
+            let yn= confirm('네이버로 이동할까요?');
+            if(yn){//확인 버튼을 눌렀다면
+                location.href='http://www.naver.com';
+            }
+        }
+    </script>
+</body>
+</html><!-- ex16BOM_window.html -->

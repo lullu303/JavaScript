@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex15BOM_window.html</title>
+    <style>
+        div#circle{
+            background-color: blueviolet;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>window객체의 setTimeout()/clearTimeout()활용</h2>
+    <h2>window객체의 setInterval()/clearInterval()활용</h2>
+    <button onclick="show()">Click Me</button>
+    <button onclick="go()">GOGO</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="goGoogle()">3초 뒤에 구글로 이동</button>
+    <button onclick="move()">Move</button>
+    <!-- [1] goGoogle() 함수에서 location이용해서 3초 뒤에 구글로 이동하기
+         [2] move() 함수에서는 circle 객체를 참조해서 circle을 보여준 뒤에 x좌표를 300px
+             인 위치로 이동시키되, 4초 뒤에 이동시키기.
+    -->
+    <hr>
+
+    <div id="circle">
+    </div>
+
+    <script>
+        let wid=null;//전역변수
+
+        const goGoogle=function() {
+            setTimeout(()=>{
+                window.location.href='http://www.goggle.com';
+            },3000);
+        }
+        
+        function show() {
+            //id가 circle인 요소를 찾아서 해당 요소의 style을 이용해서
+            //display속성값을 변경하세요
+            let obj=document.getElementById('circle');
+            obj.style.display='block';
+           
+            //자바스크립트에서는 하이픈('-')이 빼기(-)연산자로 사용되므로
+            //하이픈 대신, 하이픈 뒤에 오는 첫글자를 대문자로 기술한다.
+            //obj.style.background-color='yellow'; [x]
+            obj.style.backgroundColor='tomato';
+        }//-------------------------
+        function go() {
+            let obj=document.querySelector('#circle');
+            //wid=window.setTimeout(함수명, 밀리초) : 밀리초 이후에 함수를 한번만 호출한다.
+            //window.clearTimeout(wid) : setTimeout()을 중지시킴.
+           wid=window.setTimeout(show, 3000) // 1/1000초 단위
+        }
+        function stop() {
+            if(wid!=null)
+            window.clearTimeout(wid); //중지시킴
+        }function move(){
+            let obj=document.querySelector('#circle');
+            obj.style.display='block';
+            // [1 방법]setTimeout(moveCircle,4000);
+           /* [2 방법] setTimeout(function(){
+                obj.style.position='absolute';
+                obj.style.left='300px';
+            },4000) */
+            //ES6 이후 화살표 함수 () => {} //java람다식과 비슷.
+            //[3 방법]
+            setTimeout(()=>{
+                obj.style.position='absolute';
+                obj.style.left='300px';
+            },3000)
+        }
+        /* function moveCircle(){
+            console.log('moveCircle호출됨...');
+            let obj=document.querySelector('#circle');
+            obj.style.position='absolute';
+            obj.style.left='300px';
+        } */
+    </script>
+</body>
+</html>
+<!-- ex15BOM_window.html -->
