@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메서드를 가진 객체를 생성하는 생성자</title>
+</head>
+<body>
+    <script>
+        function Car ( carBrand, carName) {
+        this.carBrand = carBrand;
+        this.carName = carName;
+        this.showMyCar = function ( ) {
+        console.log( this.carBrand );
+        console.log( this.carName );};
+}
+        var car = new Car ( "KIA", "K7" );
+            car.showMyCar();
+
+    </script>
+</body>
+</html>
